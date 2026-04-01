@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Macaron Lavka Premium | Караколдогу эң даамдуу макарондор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: rgb(62, 8, 35);
+            color: #2d2a24;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: color(srgb red green blue);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4a27a;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a57c52;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: hotpink;
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background-color: rgb(134, 10, 35);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Main Section */
+        main {
+            position: relative;
+            padding: 100px 2rem 2rem;
+            overflow: hidden;
+        }
+
+        .bg-glow {
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 120%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(219,164,106,0.08) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Scroller / Product Grid */
+        .scroller {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+            gap: 2rem;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .item {
+            background: white;
+            border-radius: 32px;
+            border: 1px solid crimson;
+            overflow: hidden;
+            box-shadow: 0 20px 55px -12px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .item:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 55px -15px rgba(184,124,74,0.25);
+        }
+
+        .item img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .item:hover img {
+            transform: scale(1.03);
+        }
+
+        .item h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 1rem 1.2rem 0.5rem;
+            color: #3a2c21;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .item p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #6b5a4b;
+            margin: 0 1.2rem 1rem;
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #b87c4a;
+            margin: 0 1.2rem 1rem;
+            display: inline-block;
+        }
+
+        .order-btn {
+            display: inline-block;
+            margin: 0 1.2rem 1.5rem;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(95deg, #b87c4a, #d4945c);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .order-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(184,124,74,0.4);
+            background: linear-gradient(95deg, #a56e3e, #c28348);
+        }
+
+        /* Advantages */
+        .advantages {
+            padding: 4rem 2rem;
+            background: #fff8f2;
+            margin-top: 2rem;
+        }
+
+        .advantages h2, .gift h2, .testimonials h2, .delivery h2, .cta h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            color: #3a2c21;
+            margin-bottom: 2rem;
+        }
+
+        .adv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .adv-grid div {
+            background: white;
+            padding: 2rem;
+            border-radius: 28px;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+        }
+
+        .adv-grid div:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .adv-grid h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #b87c4a;
+        }
+
+        /* Gift Section */
+        .gift {
+            background: linear-gradient(115deg, #fceaea 0%, #ffe6d5 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .main-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 1rem 2.5rem;
+            background: #b87c4a;
+            color: white;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(184,124,74,0.3);
+        }
+
+        .main-btn.big {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        .main-btn:hover {
+            background: #9a653b;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(184,124,74,0.4);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 2rem;
+            background: #fff9f5;
+        }
+
+        .testimonial {
+            background: white;
+            max-width: 700px;
+            margin: 1.5rem auto;
+            padding: 1.8rem 2rem;
+            border-radius: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: 0.2s;
+            border: 1px solid #ffe0ce;
+        }
+
+        .testimonial p {
+            font-size: 1rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            color: #4a3b2e;
+        }
+
+        .testimonial span {
+            font-weight: 700;
+            color: #b87c4a;
+        }
+
+        /* Delivery */
+        .delivery {
+            padding: 3rem 2rem;
+            background: #fff0e6;
+            text-align: center;
+        }
+
+        .delivery p {
+            font-size: 1.1rem;
+            margin: 0.8rem 0;
+            color: #5c493a;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #3a2c21, #2f241b);
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            color: #ffebd2;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f1914;
+            color: #b9a48e;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            transition: 0.3s;
+            z-index: 99;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            background: #20b859;
+        }
+
+        /* Toast Message */
+        .toast-msg {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            background: #2e241e;
+            color: #f7e5d3;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 680px) {
+            .brand {
+                font-size: 1.3rem;
+            }
+            header {
+                padding: 0.8rem 1.2rem;
+            }
+            main {
+                padding: 90px 1rem 1rem;
+            }
+            .scroller {
+                gap: 1.2rem;
+            }
+            .item h2 {
+                font-size: 1.25rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .item, .adv-grid div, .testimonial {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand">🍰 Lavka Premium | Macaron Artisan</div>
+</header>
+
+<main>
+    <div class="bg-glow"></div>
+    <div class="scroller">
+        <div class="item tuna-item" data-name="Океан Бризи" data-price="180">
+            <img src="https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480_1_5x/img/recipe/ras/Assets/991793bd-adcd-44e7-91f6-7e13a3f606f7/Derivates/3efc6e38-03d1-418b-826d-aa44761301a7.jpg" alt="Океан Бризи">
+            <h2>🌊 Океан Бризи</h2>
+            <p>Эксклюзивдүү тунец муссу жана деңиз тузу кошулган деликатес.</p>
+            <div class="price-tag">180 сом</div>
+            <a href="javascript:void(0)" class="order-btn add-to-cart">📞 Заказ кылуу</a>
+        </div>
+        <div class="item" data-name="Фисташка" data-price="140">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcRRy8ZLulosoRgC-47CVHXgssBrsEa4GE3g&s" alt="Фисташка">
+            <h2>💚 Фисташка</h2>
+            <p>Жумшак крем жана куурулган фисташканын даамы.</p>
+            <div class="price-tag">140 сом</div>
+            <a href="javascript:void(0)" class="order-btn add-to-cart">📞 Заказ кылуу</a>
+        </div>
+        <div class="item" data-name="Малина" data-price="120">
+            <img src="https://img.freepik.com/premium-photo/red-white-blue-macaroni-dessert-with-blue-frosting-berries-top_895799-5912.jpg" alt="Малина">
+            <h2>🍓 Малина</h2>
+            <p>Жаңы малинадан жасалган таттуу жана кычкыл гармония.</p>
+            <div class="price-tag">120 сом</div>
+            <a href="javascript:void(0)" class="order-btn add-to-cart">📞 Заказ кылуу</a>
+        </div>
+        <div class="item" data-name="Лаванда" data-price="150">
+            <img src="https://c8.alamy.com/comp/2F722P5/lavender-macaroni-cake-with-white-chocolate-and-blueberries-nearby-are-lavender-flowers-2F722P5.jpg" alt="Лаванда">
+            <h2>🌸 Лаванда</h2>
+            <p>Тынчтандыруучу жыт жана назик гүл даамы.</p>
+            <div class="price-tag">150 сом</div>
+            <a href="javascript:void(0)" class="order-btn add-to-cart">📞 Заказ кылуу</a>
+        </div>
+    </div>
+</main>
+
+<section class="advantages">
+    <h2>✨ Эмне үчүн Lavka Premium?</h2>
+    <div class="adv-grid">
+        <div>
+            <h3>🍰 Табигый ингредиенттер</h3>
+            <p>Биз сапаттуу жана жаңы продуктыларды гана колдонобуз.</p>
+        </div>
+        <div>
+            <h3>🎨 Кол менен жасалат</h3>
+            <p>Ар бир макарон — мастерлер тарабынан жасалган искусство.</p>
+        </div>
+        <div>
+            <h3>⚡ Тез жеткирүү</h3>
+            <p>Каракол ичинде 10–20 минутта жеткирип беребиз.</p>
+        </div>
+    </div>
+</section>
+
+<section class="gift">
+    <h2>🎁 Белек үчүн идеалдуу</h2>
+    <p>Туулган күн, жолугушуу же өзгөчө учурлар үчүн эң сонун белек.<br>Стильдүү коробка жана премиум көрүнүш.</p>
+    <a href="https://wa.me/996700000000?text=Саламатсызбы!%20Белектик%20макарон%20заказ%20кылгым%20келет" class="main-btn">🎀 Белек заказ кылуу</a>
+</section>
+
+<section class="testimonials">
+    <h2>💬 Кардарлар эмне дейт?</h2>
+    <div class="testimonial">
+        <p>"Эң даамдуу макарондор! Дизайны да укмуш!"</p>
+        <span>— Айдана 🌟</span>
+    </div>
+    <div class="testimonial">
+        <p>"Белекке алдым, баары сүйүнүп кетишти 😍"</p>
+        <span>— Нурсултан</span>
+    </div>
+    <div class="testimonial">
+        <p>"Караклодо мындай сапат жок деп ойлочумун!"</p>
+        <span>— Алина ✨</span>
+    </div>
+</section>
+
+<section class="delivery">
+    <h2>🚚 Жеткирүү шарттары</h2>
+    <p>📍 Каракол шаары боюнча жеткирүү</p>
+    <p>⏱ Убакыт: 10–20 минут</p>
+    <p>💳 Төлөм: Накталай / Онлайн</p>
+    <p>📦 Минималдуу заказ: 500 сомдон</p>
+</section>
+
+<section class="cta">
+    <h2>🍬 Даамды бүгүн сезиңиз</h2>
+    <p>Азыр заказ кылып, премиум десерттен ырахат алыңыз</p>
+    <a href="https://wa.me/996700000000?text=Здравствуйте!%20Хочу%20заказать%20макарон" class="main-btn big">📲 Заказ кылуу</a>
+</section>
+
+<footer>
+    <p>© 2026 Lavka Premium — Караколдогу эң назик макарондор</p>
+    <p style="margin-top: 8px;">📞 +996 (700) 00-00-00 | 📧 lavka@premium.kg</p>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/996700000000?text=Саламатсызбы!%20Макарон%20заказ%20кылгым%20келет" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<div id="toastMessage" class="toast-msg">✨ Товар себетке кошулду!</div>
+
+<script>
+    // Add-to-cart / WhatsApp interaction with nice toast
+    const toast = document.getElementById('toastMessage');
+
+    function showToast(message) {
+        toast.textContent = message || '✨ Заказ даярдалды! WhatsApp аркылуу байланышабыз';
+        toast.style.opacity = '1';
+        setTimeout(() => {
+            toast.style.opacity = '0';
+        }, 2500);
+    }
+
+    // Update all 'Заказ кылуу' buttons to redirect to WhatsApp with product info
+    const allOrderBtns = document.querySelectorAll('.add-to-cart, .order-btn');
+
+    allOrderBtns.forEach(btn => {
+        // prevent double adding
+        if(btn.hasAttribute('data-listener')) return;
+        btn.setAttribute('data-listener', 'true');
+
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // find parent item
+            let itemDiv = this.closest('.item');
+            let productName = '';
+            let productPrice = '';
+            if(itemDiv) {
+                const nameElem = itemDiv.querySelector('h2');
+                if(nameElem) productName = nameElem.innerText.replace(/[🌊💚🍓🌸]/g, '').trim();
+                const priceElem = itemDiv.querySelector('.price-tag');
+                if(priceElem) productPrice = priceElem.innerText;
+            } else {
+                productName = 'Макарон ассорти';
+                productPrice = '';
+            }
+
+            let message = `Саламатсызбы! Мен ${productName} ${productPrice ? '('+productPrice+')' : ''} заказ кылгым келет. Даамдуу десерттерге кызыгам!`;
+            if(productName === '') message = `Саламатсызбы! Макарондорго заказ бергим келет. Жеткирүү шарттары жөнүндө айтып бересизби?`;
+
+            const whatsappUrl = `https://wa.me/996700000000?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            showToast(`✅ ${productName || 'Макарон'} тандалды! WhatsApp ачылууда`);
+        });
+    });
+
+    // Also handle "Белек заказ кылуу" and "Заказ кылуу" from CTA sections
+    const giftBtn = document.querySelector('.gift .main-btn');
+    if(giftBtn) {
+        giftBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const msg = 'Саламатсызбы! Белектик макарон коробкасына заказ бергим келет.';
+            window.open(`https://wa.me/996700000000?text=${encodeURIComponent(msg)}`, '_blank');
+            showToast('🎁 Белектик вариант тандалды!');
+        });
+    }
+
+    const ctaBtn = document.querySelector('.cta .main-btn');
+    if(ctaBtn) {
+        ctaBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const msg = 'Саламатсызбы! Макарон заказ кылгым келет. Каталогуңузду көрсөтүп жибериңизчи!';
+            window.open(`https://wa.me/996700000000?text=${encodeURIComponent(msg)}`, '_blank');
+            showToast('🍬 Сизди WhatsAppта күтөбүз!');
+        });
+    }
+
+    // Simple hover glow effect
+    const items = document.querySelectorAll('.item');
+    items.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.style.transition = 'all 0.3s ease';
+        });
+    });
+
+    // Optional: Add smooth scroll to sections (if any internal links)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
